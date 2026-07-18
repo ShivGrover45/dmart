@@ -10,7 +10,7 @@ SQL_URL=os.getenv("DB_URL")
 engine=create_engine(SQL_URL)
 session_local=sessionmaker(autocommit=False,autoflush=False,bind=engine)
 
-base=declarative_base(
+Base=declarative_base(
 
 )
 

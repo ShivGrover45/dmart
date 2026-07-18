@@ -64,3 +64,8 @@ class PurchaseResponse(BaseModel):
     items: List[PurchaseItemResponse]
 
     model_config = ConfigDict(from_attributes=True)
+
+
+class LoginRequest(BaseModel):
+    username: str
+    password: str

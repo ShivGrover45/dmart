@@ -23,8 +23,9 @@ def signin(user_data,db:Session):
     username=user_data.username
     password=user_data.password
     user=db.query(User).filter(User.username==username).first()
+    user_password=password_hash.verify(password=password,hash=user.hashed_password)
     if not user:
         raise HTTPException(status_code=401,detail="Invalid Username or Password")
-    if not password_hash.verify(password=password,hash=User.hashed_password):
+    if not user_password:
         raise HTTPException(status_code=401,detail="Invalid username or password")
     return user

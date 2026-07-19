@@ -11,6 +11,6 @@ router=APIRouter()
 def create_user(user:UserCreate,db:Session=Depends(get_db)):
     return  signup(user,db)
 
-@router.post('/login')
+@router.post('/login',response_model=UserResponse)
 def sign_in(user:LoginRequest,db:Session=Depends(get_db)):
     return signin(user,db=db)

@@ -10,6 +10,7 @@ import os
 load_dotenv()
 
 jwt_secret=os.getenv("JWT_SECRET")
+algorithm=os.getenv("ALGORITHM")
 
 password_hash=PasswordHash.recommended()
 
@@ -42,7 +43,7 @@ def signin(user_data,db:Session):
         "role":user.role,
         "exp":datetime.now(timezone.utc) + timedelta(hours=1)
     }
-    encoded=jwt.encode(payload=payload,key=jwt_secret,algorithm="HS256")
+    encoded=jwt.encode(payload=payload,key=jwt_secret,algorithm=algorithm)
     return {
         "access_token":encoded,
         "token_type":"bearer"

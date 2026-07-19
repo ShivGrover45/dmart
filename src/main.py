@@ -3,7 +3,7 @@ from Db.database import Base
 from Db.database import engine
 
 from Router.auth import router
-
+from Router.products import prod_router
 app=FastAPI(
     title="DMart API",
     version="1.0.0"
@@ -12,6 +12,7 @@ app=FastAPI(
 Base.metadata.create_all(bind=engine)
 
 app.include_router(router=router,prefix='/auth',tags=['authentication'])
+app.include_router(router=prod_router,prefix='/products',tags=['Products'])
 
 @app.get('/health')
 def health_check():
